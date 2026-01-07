@@ -20,9 +20,10 @@ var argv = minimist(process.argv.slice(2), {
 var gulpTask = 'watch';
 
 // the '--color' argument is intercepted by the the 'colors' node module
-var builder = spawn(path.join(path.join(path.dirname(require.resolve('gulp')), 'bin', 'gulp.js')), [gulpTask, '--color']);
+var gulpPath = path.join(path.join(path.dirname(require.resolve('gulp')), 'bin', 'gulp.js'));
+var builder = spawn('node', [gulpPath, gulpTask, '--color']);
 
-var server = spawn(path.join(__dirname, 'server.js'), [])
+var server = spawn('node', [path.join(__dirname, 'server.js')])
 
 function prefix(str, prefix) {
   var els = str.split(/\r?\n/);
