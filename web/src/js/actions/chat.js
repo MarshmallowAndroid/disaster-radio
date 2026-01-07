@@ -6,7 +6,7 @@ var self = module.exports = {
   showMessage: function(txt, type) {
     if(!type) type = 'remote';
     var msgs;
-    if(!app.state.chat.messages) {
+    if(!app.state.chat || !app.state.chat.messages) {
       msgs = []
     } else {
       msgs = app.state.chat.messages.slice(0);
