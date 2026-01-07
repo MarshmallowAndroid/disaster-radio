@@ -1,7 +1,7 @@
 'use strict';
 
 var gulp = require('gulp');
-var sass = require('gulp-sass');
+var sass = require('gulp-sass')(require('sass'));
 var cssimport = require('gulp-cssimport');
 var inlineSource = require('gulp-inline-source');
 var js = require('./bin/build.js');
@@ -29,6 +29,6 @@ gulp.task('build:html', function() {
 });
 
 
-gulp.task('build', ['build:js', 'build:css']);
+gulp.task('build', gulp.series(['build:js', 'build:css']));
 
-gulp.task('watch', ['watch:js', 'watch:css']);
+gulp.task('watch', gulp.series(['watch:js', 'watch:css']));

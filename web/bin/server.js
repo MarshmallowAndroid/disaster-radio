@@ -5,7 +5,7 @@ var path = require('path');
 var net = require('net');
 var http = require('http');
 var minimist = require('minimist');
-var ecstatic = require('ecstatic')
+var ecstatic = require('extatic')
 var WebSocket = require('ws');
 var router = require('routes')(); // server side router
 

@@ -13,30 +13,31 @@
     "clean": "rm static/build/*"
   },
   "dependencies": {
-    "ecstatic": "^4.1.4",
-    "gulp-cssimport": "^6.0.0",
-    "minimist": "^1.2.6",
+    "extatic": "^4.1.3",
+    "gulp-cssimport": "^7.0.0",
+    "minimist": "^1.2.8",
     "routes": "^2.1.0",
-    "ws": "^3.3.1"
+    "ws": "^8.19.0"
   },
   "devDependencies": {
-    "arraybuffer-to-buffer": "0.0.4",
-    "ashnazg": "0.0.5",
-    "babel-preset-es2015": "^6.24.1",
+    "arraybuffer-to-buffer": "^0.0.7",
+    "ashnazg": "^1.0.5",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-react-hmre": "^1.1.1",
-    "babelify": "^7.3.0",
-    "browserify": "^14.4.0",
+    "babelify": "^8.0.0",
+    "browserify": "^17.0.1",
     "byline": "^5.0.0",
-    "colors": "^1.1.2",
-    "gulp": "^3.9.1",
-    "gulp-inline-source": "^3.1.0",
-    "gulp-sass": "^3.1.0",
-    "less": "^2.7.2",
-    "preact": "^8.2.1",
-    "purecss": "^1.0.0",
-    "tweetnacl": "^1.0.0",
-    "watchify": "^3.9.0"
+    "colors": "^1.4.0",
+    "gulp": "^5.0.1",
+    "gulp-inline-source": "^4.0.0",
+    "gulp-sass": "^6.0.1",
+    "less": "^4.5.1",
+    "preact": "^10.28.2",
+    "purecss": "^3.0.0",
+    "sass": "^1.97.2",
+    "tweetnacl": "^1.0.3",
+    "watchify": "^4.0.0"
   },
   "license": "AGPL-3.0"
 }

@@ -4,7 +4,7 @@ import Socket from './socket.js'
 import ashnazg from 'ashnazg'
 import cipher from './cipher.js'
 
-const Component = ashnazg(PreactComponent)
+const Component = ashnazg.extend(PreactComponent)
 var Chat = require('./components/chat.js')(Component)
 
 function renderAll() {
