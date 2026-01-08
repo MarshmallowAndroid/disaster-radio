@@ -2,14 +2,14 @@
   "name": "disaster-radio",
   "version": "0.0.1",
   "scripts": {
-    "build-js": "bin/build.js",
-    "watch-js": "bin/build.js -d",
+    "build-js": "node bin/build.js",
+    "watch-js": "node bin/build.js -d",
     "build-css": "gulp build:css",
     "watch-css": "gulp watch:css",
     "build": "gulp build",
     "watch": "gulp watch",
-    "dev": "bin/dev.js",
-    "start": "bin/server.js",
+    "dev": "node bin/dev.js",
+    "start": "node bin/server.js",
     "clean": "rm static/build/*"
   },
   "dependencies": {
