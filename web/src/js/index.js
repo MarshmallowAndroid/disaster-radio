@@ -8,17 +8,16 @@ const Component = ashnazg.extend(PreactComponent)
 var Chat = require('./components/chat.js')(Component)
 
 function renderAll() {
-  var container = document.getElementById('container');
-  var replace;
+    var container = document.getElementById('container');
+    if (!container) return;
 
-  if(container.children.length) {
-    replace = container.children[0];
-  }
+    var replace;
+    if (container.children.length) {
+        replace = container.children[0];
+    }
 
-  render(<Chat state />, container, replace);
+    render(<Chat state />, container, replace);
 }
-
-
 
 
 function init() {
@@ -43,7 +42,11 @@ function init() {
 }
 
 
-init();
+const container = document.getElementById('container');
+if (container) {
+    init();
+}
+
 
 
 
