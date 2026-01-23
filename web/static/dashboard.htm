@@ -9,9 +9,31 @@
 
 <body class="page-home">
 
-<header></header>
+<header>
+
+    <nav class="navbar">
+
+        <div>
+
+            <ul class="navbar-directory">
+                <li><a href="dashboard.htm"><span class="mn">H</span>omepage</a></li>
+                <li><a href="#"><span class="mn">E</span>xport Data</a></li>
+                <li><a href="#"><span class="mn">D</span>eveloper Settings</a></li>
+            </ul>
+
+        </div>
+
+
+    </nav>
+
+
+
+</header>
 
 <div class="layout">
+
+
+
 
     <nav class="sidebar win95-border">
 
@@ -27,13 +49,55 @@
         </div>
 
         <ul class="sidebar-device-list win95-border-inset">
-            <li>Device 6</li>
-            <li>Device 7</li>
-            <li>Device !</li>
-            <li>
-                <a href="chat.htm">Open Chat</a>
+
+            <li class="device-item">
+                <!-- Currently selected -->
+                <button type="button" class="device-link is-selected">
+                    <div class="device-top">
+                        <div class="device-title">LoRa-Sensor: 01</div>
+                        <span class="device-status is-ok"></span>
+                    </div>
+                    <div class="device-meta">Last update: 2m ago</div>
+                </button>
             </li>
+
+            <li class="device-item">
+                <button type="button" class="device-link ">
+                    <div class="device-top">
+                        <div class="device-title">LoRa-Sensor: 02</div>
+                        <span class="device-status is-warn"></span>
+                    </div>
+                    <div class="device-meta">Last update: 10s ago</div>
+                </button>
+            </li>
+
+            <li class="device-item">
+                <button type="button" class="device-link">
+                    <div class="device-top">
+                        <div class="device-title">LoRa-Receiver</div>
+                        <span class="device-status is-offline"></span>
+                    </div>
+                    <div class="device-meta">Last update: 1h ago</div>
+                </button>
+            </li>
+
+            <li class="device-item">
+                <!-- Unaligned when not button -->
+                <button type="button" class="device-link">
+                    <a href="chat.htm" class="device-link">
+                        <div class="device-top">
+                            <div class="device-title">Open Chat</div>
+                            <span class="device-status is-ok"></span>
+                        </div>
+                        <div class="device-meta">Go to chat page</div>
+                    </a>
+                </button>
+            </li>
+
         </ul>
+
+
+
 
     </nav>
 
