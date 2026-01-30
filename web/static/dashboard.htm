@@ -10,48 +10,43 @@
 <body class="page-home">
 
 <header>
-
     <nav class="navbar">
-
-        <div>
-
-            <ul class="navbar-directory">
-                <li><a href="dashboard.htm"><span class="mn">H</span>omepage</a></li>
-                <li><a href="#"><span class="mn">E</span>xport Data</a></li>
-                <li><a href="#"><span class="mn">D</span>eveloper Settings</a></li>
-            </ul>
-
-        </div>
-
-
+        <ul class="navbar-directory">
+            <li>
+                <a href="dashboard.htm">
+                    <span class="mn">H</span>omepage
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="mn">E</span>xport Data
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="mn">D</span>eveloper Settings
+                </a>
+            </li>
+        </ul>
     </nav>
-
-
-
 </header>
 
 <div class="layout">
 
-
-
-
     <nav class="sidebar win95-border">
 
-        <div class="sidebar-title">
-            Device Overview
-        </div>
+        <div class="sidebar-title">Device Overview</div>
 
         <div class="sidebar-search win95-border-inset">
             <span class="search-icon">[X]</span>
             <label>
-                <input type="text" placeholder="Search Device" />
+                <input type="text" placeholder="Search Device" aria-label="Search Device" />
             </label>
         </div>
 
         <ul class="sidebar-device-list win95-border-inset">
 
             <li class="device-item">
-                <!-- Currently selected -->
                 <button type="button" class="device-link is-selected">
                     <div class="device-top">
                         <div class="device-title">LoRa-Sensor: 01</div>
@@ -62,7 +57,7 @@
             </li>
 
             <li class="device-item">
-                <button type="button" class="device-link ">
+                <button type="button" class="device-link">
                     <div class="device-top">
                         <div class="device-title">LoRa-Sensor: 02</div>
                         <span class="device-status is-warn"></span>
@@ -82,23 +77,16 @@
             </li>
 
             <li class="device-item">
-                <!-- Unaligned when not button -->
-                <button type="button" class="device-link">
-                    <a href="chat.htm" class="device-link">
-                        <div class="device-top">
-                            <div class="device-title">Open Chat</div>
-                            <span class="device-status is-ok"></span>
-                        </div>
-                        <div class="device-meta">Go to chat page</div>
-                    </a>
-                </button>
+                <a href="chat.htm" class="device-link is-nav">
+                    <div class="device-top">
+                        <div class="device-title">Open Chat</div>
+                        <span class="device-status is-ok"></span>
+                    </div>
+                    <div class="device-meta">Go to chat page</div>
+                </a>
             </li>
 
         </ul>
-
-
-
-
     </nav>
 
     <main class="win95-border">
@@ -108,20 +96,20 @@
 
             <div class="map-canvas">
                 <div class="map-image">
-                    <img src="images/659AMap.png" alt="Map">
+                    <img src="images/659AMap.png" alt="Map" />
                 </div>
             </div>
         </div>
 
-        <ul class="sub-menu">
-            <li><a href="#">Chart</a></li>
-            <li><a href="#">Measurements</a></li>
-            <li><a href="#">Timeline</a></li>
-            <li><a href="#">Alert</a></li>
+        <ul class="sub-menu" aria-label="Panels">
+            <li><a class="is-active" href="#" data-panel="chart">Chart</a></li>
+            <li><a href="#" data-panel="measurements">Measurements</a></li>
+            <li><a href="#" data-panel="timeline">Timeline</a></li>
+            <li><a href="#" data-panel="alert">Alert</a></li>
         </ul>
 
-        <div class="main-charts win95-border-inset">
-            Charts go here
+        <div id="panelHost" class="main-charts win95-border-inset">
+            <div class="panel-placeholder">Chart panel (placeholder)</div>
         </div>
 
     </main>
@@ -129,6 +117,282 @@
 </div>
 
 <footer></footer>
+
+<script>
+    (function () {
+        const host = document.getElementById("panelHost");
+        const menu = document.querySelector(".sub-menu");
+        if (!host || !menu) return;
+
+        const templates = {
+            chart: `
+        <div class="panel-placeholder">
+          Chart panel (placeholder)
+        </div>
+      `,
+
+            measurements: `
+        <div class="meas-panel">
+
+          <div class="meas-header win95-border-inset">
+            <div class="meas-title">Current Readings</div>
+            <div class="meas-sub">Snapshot for selected device</div>
+          </div>
+
+          <div class="meas-grid">
+
+            <div class="meas-card win95-border-inset">
+              <div class="meas-label">Device</div>
+              <div class="meas-value">LoRa-Sensor: 01</div>
+            </div>
+
+            <div class="meas-card win95-border-inset">
+              <div class="meas-label">Last update</div>
+              <div class="meas-value">[2026-01-30 21:10] (10s ago)</div>
+            </div>
+
+            <div class="meas-card win95-border-inset">
+              <div class="meas-label">Water level</div>
+              <div class="meas-value">
+                <strong>2.5 ft</strong>
+                <span class="meas-pill is-warn">WARN</span>
+              </div>
+            </div>
+
+            <div class="meas-card win95-border-inset">
+              <div class="meas-label">Battery</div>
+              <div class="meas-value">78%</div>
+            </div>
+
+            <div class="meas-card win95-border-inset">
+              <div class="meas-label">Signal</div>
+              <div class="meas-value">URM0M -101 dBm / FAT 7.2 dB</div>
+            </div>
+
+            <div class="meas-card win95-border-inset">
+              <div class="meas-label">Uptime</div>
+              <div class="meas-value">2d 04h</div>
+            </div>
+
+            <div class="meas-card win95-border-inset">
+              <div class="meas-label">Receiver</div>
+              <div class="meas-value">
+                Online
+                <span class="meas-pill is-ok">OK</span>
+              </div>
+            </div>
+
+            <div class="meas-card win95-border-inset">
+              <div class="meas-label">Data freshness</div>
+              <div class="meas-value">Fresh</div>
+            </div>
+
+          </div>
+
+          <div class="meas-notes win95-border-inset">
+            <div class="meas-label">Notes</div>
+            <div class="meas-value">
+              This tab is meant for at-a-glance status only. Charts belong in the Chart tab.
+            </div>
+          </div>
+
+        </div>
+      `,
+
+            timeline: `
+        <div class="timeline-panel">
+
+          <div class="timeline-header win95-border-inset">
+            <div class="timeline-title">History Timlog</div>
+            <div class="timeline-sub">Hourly entries</div>
+          </div>
+
+          <ul class="timeline-list win95-border-inset">
+
+            <li class="timeline-item">
+              <span class="timeline-ts">[2026-01-30 14:00]</span>
+              <span class="timeline-msg">No incident.</span>
+            </li>
+
+            <li class="timeline-item">
+              <span class="timeline-ts">[2026-01-30 15:00]</span>
+              <span class="timeline-msg">Water level rising slowly.</span>
+            </li>
+
+            <li class="timeline-item">
+              <span class="timeline-ts">[2026-01-30 16:00]</span>
+              <span class="timeline-msg">No incident.</span>
+            </li>
+
+            <li class="timeline-item">
+              <span class="timeline-ts">[2026-01-30 17:00]</span>
+              <span class="timeline-msg">Threshold warning triggered (2.5 ft).</span>
+            </li>
+
+            <li class="timeline-item">
+              <span class="timeline-ts">[2026-01-30 18:00]</span>
+              <span class="timeline-msg">No incident.</span>
+            </li>
+
+            <li class="timeline-item">
+              <span class="timeline-ts">[2026-01-30 19:00]</span>
+              <span class="timeline-msg">Receiver offline.</span>
+            </li>
+
+            <li class="timeline-item">
+              <span class="timeline-ts">[2026-01-30 20:00]</span>
+              <span class="timeline-msg">No incident.</span>
+            </li>
+
+            <li class="timeline-item">
+              <span class="timeline-ts">[2026-01-30 21:00]</span>
+              <span class="timeline-msg">Sensor 02 back online.</span>
+            </li>
+
+          </ul>
+
+        </div>
+      `,
+
+            alert: `
+        <div class="alerts-panel">
+
+          <section class="alerts-left win95-border-inset">
+            <div class="alert-block win95-border-inset">
+              <div class="alert-label">Select device</div>
+              <select>
+                <option>LoRa-Sensor: 01</option>
+                <option>LoRa-Sensor: 02</option>
+                <option>LoRa-Receiver</option>
+              </select>
+            </div>
+
+            <div class="alert-block win95-border-inset">
+              <div class="alert-label">Threshold (ft.)</div>
+
+              <input class="alert-range" type="range"
+                     min="0" max="6" step="0.5" value="3" />
+
+              <div class="threshold-below">
+                <div class="threshold-value">
+                  Selected: <strong>3.0 ft</strong>
+                </div>
+
+                <input class="threshold-number"
+                       type="number"
+                       min="0" max="6" step="0.5" value="3"
+                       inputmode="decimal" />
+              </div>
+            </div>
+
+            <div class="alert-block win95-border-inset">
+              <div class="alert-label">Custom message</div>
+              <textarea class="alert-textarea" placeholder="Type your alert message here..."></textarea>
+
+              <label class="alert-checkbox">
+                <input type="checkbox" />
+                Enable timestamps
+              </label>
+            </div>
+
+            <div class="alert-actions">
+              <button type="button" class="alert-btn">Save</button>
+            </div>
+
+          </section>
+
+          <aside class="alerts-right win95-border-inset">
+            <div class="alert-label">Saved messages</div>
+
+            <ul class="alert-list win95-border-inset">
+              <li class="alert-list-item">
+                <button type="button" class="alert-list-btn is-selected">
+                  <span class="alert-msg">Evacuate immediately. Water level is above safe limit.</span>
+                  <span class="alert-th">3.0 ft</span>
+                </button>
+              </li>
+
+              <li class="alert-list-item">
+                <button type="button" class="alert-list-btn">
+                  <span class="alert-msg">Monitor conditions. Prepare to evacuate if level rises.</span>
+                  <span class="alert-th">2.5 ft</span>
+                </button>
+              </li>
+
+              <li class="alert-list-item">
+                <button type="button" class="alert-list-btn">
+                  <span class="alert-msg">Conditions are stable. Continue monitoring updates.</span>
+                  <span class="alert-th">1.0 ft</span>
+                </button>
+              </li>
+
+              <li class="alert-list-item">
+                <button type="button" class="alert-list-btn">
+                  <span class="alert-msg">Remain cautious. Watch for further advisories.</span>
+                  <span class="alert-th">4.5 ft</span>
+                </button>
+              </li>
+            </ul>
+
+            <div class="alert-actions">
+              <button type="button" class="alert-btn">Delete</button>
+            </div>
+          </aside>
+
+        </div>
+      `
+        };
+
+        function setActiveTab(panelName) {
+            const links = menu.querySelectorAll("a[data-panel]");
+            links.forEach((l) => l.classList.toggle("is-active", l.getAttribute("data-panel") === panelName));
+        }
+
+        function setPanel(name) {
+            host.innerHTML = templates[name] || templates.chart;
+            setActiveTab(name || "chart");
+
+            if (name === "alert") {
+                const range = host.querySelector(".alert-range");
+                const num = host.querySelector(".threshold-number");
+                const strong = host.querySelector(".threshold-value strong");
+                if (!range || !num || !strong) return;
+
+                //.5 for the measurements
+                function toHalfStep(v) {
+                    const n = Number(v);
+                    if (!Number.isFinite(n)) return 3;
+                    const clamped = Math.max(0, Math.min(6, n));
+                    return Math.round(clamped * 2) / 2;
+                }
+
+                function sync(v) {
+                    const val = toHalfStep(v);
+                    range.value = String(val);
+                    num.value = String(val);
+                    strong.textContent = val.toFixed(1) + " ft";
+                }
+
+                range.addEventListener("input", function () {
+                    sync(range.value);
+                });
+
+                num.addEventListener("input", function () {
+                    sync(num.value);
+                });
+
+                sync(range.value);
+            }
+        }
+
+        menu.addEventListener("click", function (e) {
+            const a = e.target.closest("a[data-panel]");
+            if (!a) return;
+            e.preventDefault();
+            setPanel(a.getAttribute("data-panel"));
+        });
+    })();
+</script>
 
 </body>
 </html>
